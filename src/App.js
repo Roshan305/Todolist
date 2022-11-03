@@ -4,10 +4,10 @@ import "./App.css";
 const App = () => {
   const [todos, setTodos] = React.useState([]);
   const [todo, setTodo] = React.useState("");
-  const [todoEditing, setTodoEditing] = React.useState(null);
+  const [todoEditing, setTodoEditing] = React.useState(null); //starts with a null since we are not editing any value from the start.
   const [editingText, setEditingText] = React.useState("");
 
-  React.useEffect(() => {
+  React.useEffect(() => { //retrieving the saved data
     const json = localStorage.getItem("todos");
     const loadedTodos = JSON.parse(json);
     if (loadedTodos) {
@@ -15,21 +15,21 @@ const App = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    const json = JSON.stringify(todos);
+  React.useEffect(() => { //saving the data
+    const json = JSON.stringify(todos); //stringify will turn js to json
     localStorage.setItem("todos", json);
   }, [todos]);
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); //prevents refreshing the page when adding todo.
 
     const newTodo = {
-      id: new Date().getTime(),
+      id: new Date().getTime(), //since we are using multiple objects, we use id.
       text: todo,
       completed: false,
     };
-    setTodos([...todos].concat(newTodo));
-    setTodo("");
+    setTodos([...todos].concat(newTodo)); //adds new object to the todos array.
+    setTodo(""); //refreshes the todo input field and returns empty input area.
   }
 
   function deleteTodo(id) {
@@ -64,13 +64,13 @@ const App = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          onChange={(e) => setTodo(e.target.value)}
-          value={todo}
+          onChange={(e) => setTodo(e.target.value)} //will take the value of the current input.
+          value={todo} //two way data binding, using additional functions to change this value.
         />
         <button type="submit">Add Todo</button>
       </form>
-      {todos.map((todo) => (
-        <div key={todo.id} className="todo">
+      {todos.map((todo) => ( //shows todos in the screen.
+        <div key={todo.id} className="todo"> 
           <div className="todo-text">
             <input
               type="checkbox"

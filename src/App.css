@@ -6,7 +6,7 @@ h1 {
   margin: 60px auto;
 }
 form, .todo {
-  border: 1px solid grey;
+  border: 1px solid blue;
   padding: 10px 20px;
   margin-bottom: 10px;
 }
@@ -27,7 +27,7 @@ form input {
 
 button {
   font-size: 16px;
-  background-color: rgb(217, 60, 35);
+  background-color: red;
   color: #fff;
   border-radius: 8px;
   border: none;
